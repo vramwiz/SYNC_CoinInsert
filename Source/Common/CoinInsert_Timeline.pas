@@ -3,7 +3,7 @@
 // Copyright (c) 2026 VRAMの魔術師
 // SPDX-License-Identifier: GPL-3.0-only
 
-// 硬貨の寸法と映像・音声が共有するオブジェクト内の投入時刻。
+// 硬貨の寸法とオブジェクト内の投入時刻。
 
 interface
 
@@ -39,8 +39,6 @@ function ParseCoinList(const Spec: string): TCoinList;
 function CoinStart(const Timing: TCoinTiming; Index: Integer): Double;
 // 投入口との接触を示す、投入開始から完了までの進捗（0～1）。
 function ContactProgress(Direction: TInsertDirection): Double;
-// 投入順と方向に基づく接触時刻（秒）。効果音の発音時刻と一致する。
-function CoinContact(const Timing: TCoinTiming; Index: Integer): Double;
 // 秒単位の閉区間に含まれるイベントの最初と最後を返す。Interval は正。空なら Last < First。
 procedure CoinTimeRange(WindowStart, WindowEnd, FirstTime, Interval: Double;
   Count: Integer; out First, Last: Integer);
@@ -111,11 +109,6 @@ begin
   else
     Result := 0.74;
   end;
-end;
-
-function CoinContact(const Timing: TCoinTiming; Index: Integer): Double;
-begin
-  Result := CoinStart(Timing, Index) + Timing.Duration * ContactProgress(Timing.Direction);
 end;
 
 procedure CoinTimeRange(WindowStart, WindowEnd, FirstTime, Interval: Double;

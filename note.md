@@ -4,7 +4,7 @@
 
 - Delphi プロジェクトは `SYNC_CoinInsert.dproj`、本番プラグインは `SYNC_CoinInsert.auf2`。登録名は「コイン投入演出」、グループは `SYNC`。
 - `D:\DelphiProg\MyApp\SYNC_WeatherFX` から Win64 ビルド設定、SDK の型とフィルターテーブル登録処理、共通作業手順を継承した。
-- AviUtl2 SDK のメディアオブジェクトとして映像と音声を生成する。位置、拡大率、回転、透明度はホスト標準項目で制御する。
+- AviUtl2 SDK のメディアオブジェクトとしてコイン投入の映像を生成する。位置、拡大率、回転、透明度はホスト標準項目で制御する。
 - 利用方法と設定値は [README.md](README.md) を参照する。
 
 ## ビルド
@@ -38,10 +38,9 @@ cmd /c 'call "C:\Program Files (x86)\Embarcadero\Studio\37.0\bin\rsvars.bat" && 
 ## ソース配置
 
 - `SYNC_CoinInsert.dpr` は DLL のエクスポートと最低対応バージョンを担当する。
-- `Source/Plugin/Filter` は SDK 項目の登録と映像・音声の入出力を担当する。硬貨リストと作業バッファは映像・音声別に保持する。
-- `Source/Common/CoinInsert_Timeline.pas` は硬貨の属性、額面リストの解析、投入順・投入と接触の時刻を担当する。
+- `Source/Plugin/Filter` は SDK 項目の登録と映像の出力を担当する。硬貨リストと描画バッファはインスタンスごとに保持する。
+- `Source/Common/CoinInsert_Timeline.pas` は硬貨の属性、額面リストの解析、投入順、投入時刻と接触時の進捗を担当する。
 - `Source/Common/CoinInsert_Metal.pas` と `CoinInsert_Renderer.pas` は金属面・縁刻・穴の内壁を生成し、投入口付近で硬貨の形状をクリッピングする。生成画像の中心は投入口の位置とする。
-- `Source/Common/CoinInsert_Audio.pas` は映像と共有する接触時刻を起点に、硬貨の接触・反跳・落下音を合成する。
 - `Source/Lib` は SDK の型とフィルターテーブルの共通登録処理を保持する。
 
 ## コメント・分割・文字コード
@@ -83,6 +82,12 @@ cmd /c 'call "C:\Program Files (x86)\Embarcadero\Studio\37.0\bin\rsvars.bat" && 
 - Win64 の両構成を再ビルドして AUF2 の表示バージョンと既存の描画・音声を確認した。Release の比較画像 42 枚は従来版と一致した。
 - README はインストール、使い方、設定、ライセンスを案内する。正面・横投入の確認画像を `Sample/coin-insert.png` に掲載した。
 - 配布 ZIP は専用フォルダーに AUF2、README、ライセンス関連3ファイルを収録する。ZIP 内の AUF2 の XXH3-128 は `8f622a69053e879ded0e8c95f47741fb`。
+
+## v1.0.0 の音声削除（2026-11-27）
+
+- 音声合成、効果音量、音声コールバックの登録を削除した。SDK のテーブル定義は維持し、映像とインスタンス管理を登録する。
+- Win64 Debug／Release は警告 0・エラー 0。AUF2 を直接読み込み、音声登録がなく、描画設定が 9 項目であることを確認した。各構成で公開済みの初回版と 120 フレームの RGBA が一致した。AviUtl2 の画面での動作は未確認。
+- Release を既定先に配置し、配布 ZIP とカタログを更新した。ZIP 内の AUF2 の XXH3-128 は ab4fd78fe31590d1845274a9d88c59f0。
 
 ## AviUtl2カタログ登録時の共通ルール
 

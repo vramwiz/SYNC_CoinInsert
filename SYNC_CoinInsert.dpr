@@ -13,7 +13,6 @@ uses
   CoinInsert_Timeline in 'Source\Common\CoinInsert_Timeline.pas',
   CoinInsert_Metal in 'Source\Common\CoinInsert_Metal.pas',
   CoinInsert_Renderer in 'Source\Common\CoinInsert_Renderer.pas',
-  CoinInsert_Audio in 'Source\Common\CoinInsert_Audio.pas',
   CoinInsert_Parameters in 'Source\Plugin\Filter\CoinInsert_Parameters.pas',
   SYNC_CoinInsert_FilterPlugin in 'Source\Plugin\Filter\SYNC_CoinInsert_FilterPlugin.pas';
 

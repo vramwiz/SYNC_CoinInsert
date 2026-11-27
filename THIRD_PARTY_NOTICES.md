@@ -17,4 +17,4 @@
 - **SYNC_AquaFX / SYNC_ParticleFX / SYNC_Mine / SYNC_PhotoShot / SYNC_Nicomea** は、継承元のプロジェクト構成・ビルド設定・SDK 型定義・配布処理の由来です。
 - **Syncroh2 / SYNC_Lyrics** は、`PluginFilterTable.pas` の登録処理の由来です。
 
-本体は Delphi RTL を使用します。硬貨・投入口の画像と効果音は本体が生成します。
+本体は Delphi RTL を使用します。硬貨・投入口の画像は本体が生成します。

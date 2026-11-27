@@ -94,7 +94,6 @@
         <DCCReference Include="Source\Common\CoinInsert_Timeline.pas"/>
         <DCCReference Include="Source\Common\CoinInsert_Metal.pas"/>
         <DCCReference Include="Source\Common\CoinInsert_Renderer.pas"/>
-        <DCCReference Include="Source\Common\CoinInsert_Audio.pas"/>
         <DCCReference Include="Source\Plugin\Filter\CoinInsert_Parameters.pas"/>
         <DCCReference Include="Source\Plugin\Filter\SYNC_CoinInsert_FilterPlugin.pas"/>
         <BuildConfiguration Include="Base">

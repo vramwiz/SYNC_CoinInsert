@@ -14,12 +14,10 @@ uses
 procedure RegisterCoinInsertParameters;
 // コールバック中の文字列をコピーして返し、ホスト所有のポインターを残さない。
 function ReadCoinSpec: string;
-// 映像と音声で共有する方向・時間設定（秒）をコピーする。
+// 投入方向と時間設定（秒）をコピーする。
 function ReadCoinTiming: TCoinTiming;
 // 硬貨の拡大率（倍率）、距離（画素）、表示と下降の設定をコピーする。
 function ReadCoinView: TCoinView;
-// 効果音量を倍率 0～1 に変換する。
-function ReadCoinVolume: Double;
 
 implementation
 
@@ -40,8 +38,7 @@ const
 var
   Direction, SideDescent: TFILTER_ITEM_SELECT;
   CoinSpec: TFILTER_ITEM_STRING;
-  CoinScale, InsertDistance, StartDelay, InsertDuration, InsertInterval,
-    Volume: TFILTER_ITEM_TRACK;
+  CoinScale, InsertDistance, StartDelay, InsertDuration, InsertInterval: TFILTER_ITEM_TRACK;
   ShowFrame: TFILTER_ITEM_CHECK;
 
 procedure RegisterCoinInsertParameters;
@@ -54,7 +51,6 @@ begin
   AddTrack(StartDelay, '投入開始までの時間', 0.50, 0, 60, 0.01);
   AddTrack(InsertDuration, '1枚あたりの投入時間', 0.50, 0.01, 10, 0.01);
   AddTrack(InsertInterval, '投入間隔', 0.70, 0.01, 60, 0.01);
-  AddTrack(Volume, '効果音量', 40.00, 0, 100, 0.01);
   AddSelect(SideDescent, '横投入の下降', Ord(sdSmooth), @SIDE_DESCENT_CHOICES[0]);
 end;
 
@@ -94,11 +90,6 @@ begin
   else
     Result.SideDescent := sdSmooth;
   end;
-end;
-
-function ReadCoinVolume: Double;
-begin
-  Result := TrackValue(Volume, 40) / 100;
 end;
 
 end.
