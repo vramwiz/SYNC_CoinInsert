@@ -19,7 +19,8 @@ type
   end;
   TCoinPixels = TArray<TPIXEL_RGBA>;
 
-// オブジェクト内時刻（秒）の形状を呼出側所有のバッファへ書き込む。
+// オブジェクト内時刻（秒）の形状を呼出側所有の RGBA バッファへ書き込む。
+// Width/Height は出力画素数。投入口の中心を画像中心に固定し、透明領域は A=0 にする。
 procedure RenderCoinFrame(const View: TCoinView; const Timing: TCoinTiming;
   const Coins: TCoinList; Time: Double; var Pixels: TCoinPixels;
   out Width, Height: Integer);

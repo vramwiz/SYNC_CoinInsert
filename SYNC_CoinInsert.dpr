@@ -19,11 +19,13 @@ uses
 
 {$R *.res}
 
+// SDK 形式で最低対応ホストバージョンを返す。2011600 は 2.1.16。
 function RequiredVersion: Cardinal; cdecl;
 begin
   Result := 2011600;
 end;
 
+// ホストのバージョンを確認し、登録完了時は 1、非対応または失敗時は 0 を返す。
 function InitializePlugin(Version: Cardinal): Byte; cdecl;
 begin
   Result := 0;
@@ -40,6 +42,7 @@ begin
   // インスタンスのバッファは func_destroy、共有テクスチャは DLL が解放する。
 end;
 
+// DLL が所有する登録テーブルを返す。取得に失敗した場合は nil。
 function GetFilterPluginTable: PFILTER_PLUGIN_TABLE; cdecl;
 begin
   Result := nil;

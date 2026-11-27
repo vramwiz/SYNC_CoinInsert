@@ -10,12 +10,15 @@ interface
 uses
   CoinInsert_Timeline, CoinInsert_Renderer;
 
-// DLL が所有する設定項目をテーブルへ登録する。
+// DLL が所有する設定項目に初期値を設定し、SDK のテーブルへアドレスを登録する。
 procedure RegisterCoinInsertParameters;
-// ホストの文字列・項目ポインターは保持せず、設定値をコピーして返す。
+// コールバック中の文字列をコピーして返し、ホスト所有のポインターを残さない。
 function ReadCoinSpec: string;
+// 映像と音声で共有する方向・時間設定（秒）をコピーする。
 function ReadCoinTiming: TCoinTiming;
+// 硬貨の拡大率（倍率）、距離（画素）、表示と下降の設定をコピーする。
 function ReadCoinView: TCoinView;
+// 効果音量を倍率 0～1 に変換する。
 function ReadCoinVolume: Double;
 
 implementation

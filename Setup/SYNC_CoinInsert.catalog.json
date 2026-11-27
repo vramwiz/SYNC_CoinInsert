@@ -1,0 +1,74 @@
+[
+    {
+        "id":  "VRAMWIZ.SYNC_CoinInsert",
+        "name":  "コイン投入演出",
+        "type":  "フィルタプラグイン",
+        "summary":  "投入口に硬貨を入れる動きと効果音を生成",
+        "description":  "https://raw.githubusercontent.com/vramwiz/SYNC_CoinInsert/refs/heads/main/README.md",
+        "author":  "VRAMの魔術師",
+        "repoURL":  "https://github.com/vramwiz/SYNC_CoinInsert/",
+        "licenses":  [
+                         {
+                             "type":  "GPL-3.0",
+                             "isCustom":  false,
+                             "copyrights":  [
+                                                {
+                                                    "years":  "2026",
+                                                    "holder":  "VRAMの魔術師"
+                                                }
+                                            ],
+                             "licenseBody":  null
+                         }
+                     ],
+        "tags":  [
+                     "エフェクト",
+                     "アニメーション"
+                 ],
+        "dependencies":  [
+
+                         ],
+        "images":  [
+
+                   ],
+        "installer":  {
+                          "source":  {
+                                         "github":  {
+                                                        "owner":  "vramwiz",
+                                                        "repo":  "SYNC_CoinInsert",
+                                                        "pattern":  "^SYNC_CoinInsert\\.zip$"
+                                                    }
+                                     },
+                          "install":  [
+                                          {
+                                              "action":  "download"
+                                          },
+                                          {
+                                              "action":  "extract"
+                                          },
+                                          {
+                                              "action":  "copy",
+                                              "from":  "{tmp}/SYNC_CoinInsert",
+                                              "to":  "{pluginsDir}/SYNC_CoinInsert"
+                                          }
+                                      ],
+                          "uninstall":  [
+                                            {
+                                                "action":  "delete",
+                                                "path":  "{pluginsDir}/SYNC_CoinInsert/"
+                                            }
+                                        ]
+                      },
+        "version":  [
+                        {
+                            "version":  "v1.0.0",
+                            "release_date":  "2026-11-27",
+                            "file":  [
+                                         {
+                                             "path":  "{pluginsDir}/SYNC_CoinInsert/SYNC_CoinInsert.auf2",
+                                             "XXH3_128":  "8f622a69053e879ded0e8c95f47741fb"
+                                         }
+                                     ]
+                        }
+                    ]
+    }
+]

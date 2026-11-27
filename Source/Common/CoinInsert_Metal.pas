@@ -17,6 +17,7 @@ function CoinFaceColor(Kind: TCoinKind; U, V, Light: Double): TPIXEL_RGBA;
 // Angle は硬貨の外周角。Depth は厚みの中心が 0 で、両端が ±1。
 function CoinEdgeColor(Kind: TCoinKind; Angle, Depth, Light: Double;
   InsideHole: Boolean): TPIXEL_RGBA;
+// 0～255 に丸めた RGB と不透明アルファで画素を作る。
 function PixelColor(R, G, B: Double): TPIXEL_RGBA;
 
 implementation

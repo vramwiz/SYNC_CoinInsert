@@ -24,11 +24,13 @@ type
   TCoinSequence = record
     Spec: string;
     Coins: TCoinList;
+    // 指定文字列が変わったときだけ、保持している解析済みリストを置き換える。
     procedure Update;
   end;
 
   TCoinSession = class
   private
+    // SDK の映像・音声スレッドが、互いのバッファや解析済みリストを共有しない。
     FVideoLock, FAudioLock: TCriticalSection;
     FVideoSequence, FAudioSequence: TCoinSequence;
     FPixels: TCoinPixels;
@@ -36,7 +38,8 @@ type
   public
     constructor Create;
     destructor Destroy; override;
-    // ホストから借用したポインターはコールバックの間だけ参照する。
+    // 借用した SDK 構造体から設定時刻を取得し、画像・PCM をホストへ渡す。
+    // バッファはセッション所有。処理成功時は 1、失敗時は 0。
     function VideoFrame(Video: PFILTER_PROC_VIDEO): Byte;
     function AudioBlock(Audio: PFILTER_PROC_AUDIO): Byte;
   end;
@@ -159,7 +162,7 @@ begin
     PrepareCoinFaces;
     SetupPluginTable(FILTER_FLAG_VIDEO or FILTER_FLAG_AUDIO or FILTER_FLAG_INPUT
       or FILTER_FLAG_USERDATA, 'コイン投入演出', 'SYNC',
-      'コイン投入演出 / SYNC_CoinInsert v0.1.0', ProcVideo, ProcAudio);
+      'コイン投入演出 / SYNC_CoinInsert v1.0.0', ProcVideo, ProcAudio);
     RegisterCoinInsertParameters;
     GetPluginTable^.Func_Create := CreateSession;
     GetPluginTable^.Func_Destroy := DestroySession;

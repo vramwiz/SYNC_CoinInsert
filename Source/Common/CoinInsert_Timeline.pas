@@ -35,15 +35,20 @@ const
 
 // DLL 所有の動的配列を返す。空欄・未対応額面を除外して順序と重複を保つ。
 function ParseCoinList(const Spec: string): TCoinList;
+// 0 始まりの投入順から、オブジェクト開始を基準とした時刻（秒）を求める。
 function CoinStart(const Timing: TCoinTiming; Index: Integer): Double;
+// 投入口との接触を示す、投入開始から完了までの進捗（0～1）。
 function ContactProgress(Direction: TInsertDirection): Double;
+// 投入順と方向に基づく接触時刻（秒）。効果音の発音時刻と一致する。
 function CoinContact(const Timing: TCoinTiming; Index: Integer): Double;
-// 連続するイベントの有効範囲。空の場合は Last < First。
+// 秒単位の閉区間に含まれるイベントの最初と最後を返す。Interval は正。空なら Last < First。
 procedure CoinTimeRange(WindowStart, WindowEnd, FirstTime, Interval: Double;
   Count: Integer; out First, Last: Integer);
-// 再描画に依存しない -1～1 のばらつきを返す。
+// 投入順・額面・用途別の Salt から、再読込でも同じ -1～1 のばらつきを返す。
 function CoinVariation(Index: Integer; Kind: TCoinKind; Salt: Cardinal): Double;
+// Lo から Hi の範囲を両端で速度ゼロの 0～1 に変換する。Lo < Hi。
 function SmoothRange(Lo, Hi, Value: Double): Double;
+// T=0 で A、T=1 で B となる線形補間。
 function Lerp(A, B, T: Double): Double; inline;
 
 implementation

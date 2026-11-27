@@ -13,8 +13,9 @@ uses
 type
   TCoinSamples = TArray<Single>;
 
-// オブジェクト先頭からのサンプル位置を受け、呼出側のモノラル PCM バッファを更新する。
-// Volume は 0～1。描画と音声の順序やブロックサイズに依存しない。
+// オブジェクト先頭からのサンプル位置とサンプルレート（Hz）を受ける。
+// 呼出側所有のモノラル PCM を Count サンプルで更新する。Volume は 0～1。
+// サンプルの絶対位置で評価するので、処理順序やブロックサイズに依存しない。
 procedure RenderCoinAudio(const Timing: TCoinTiming; const Coins: TCoinList;
   SampleIndex: Int64; Count, Rate: Integer; Volume: Double; var Samples: TCoinSamples);
 
